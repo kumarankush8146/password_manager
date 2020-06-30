@@ -119,5 +119,9 @@ def main():
     else:
         print("Enter valid choice")
 
+    exit = input('Want to stay on the application?(y/n) ')
+    if exit == 'y':
+        main()
+
 if __name__ == '__main__':
     main()
