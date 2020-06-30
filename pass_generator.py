@@ -7,7 +7,7 @@ from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 from prettytable import PrettyTable
 
 def generate_password():
-    choices= "abcdefghijklmnopqrsuvwxt1234567890!@#$%^&*()/\~`[]"
+    choices= "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()/\~`[]"
     rand_password = [random.choice(choices) for i in range(25)] 
     rand_password = "".join(rand_password)
     return rand_password.encode()
