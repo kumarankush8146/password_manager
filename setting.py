@@ -1,4 +1,4 @@
-import sqlite3,bcrypt,sys
+import sqlite3,bcrypt,sys,getpass
 from sqlite3 import Error
 
 def createDB():
@@ -35,6 +35,15 @@ def addMasterKey(conn,main_password):
         conn.close()
     
 
+def setMasterKey():
+    main_password= getpass.getpass("Enter Master Password: ")
+    reenter = getpass.getpass("Re-Enter Master Password: ")
+    if main_password == reenter:
+        return main_password
+    else:
+        print("Re-Entered password was not the same as Master Password\nRe-Enter your Password")
+        setMasterKey()
+
 def main():
     print("It is your first time setting the database")
     a = input("Do you want to create database(y/n): ")
@@ -44,7 +53,7 @@ def main():
         print("Creating Table....")
         createTB(conn)
         print("All Done!")
-        main_password= input("Enter Master Password: ")
+        main_password = str(setMasterKey())
         addMasterKey(conn,main_password)
     else:
         sys.exit()

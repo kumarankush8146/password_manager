@@ -1,4 +1,4 @@
-import random,bcrypt,sqlite3,os,base64
+import random,bcrypt,sqlite3,os,base64,getpass
 from sqlite3 import Error
 from cryptography.fernet import Fernet
 from cryptography.hazmat.backends import default_backend
@@ -7,7 +7,7 @@ from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 from prettytable import PrettyTable
 
 def generate_password():
-    choices= "abcdefghijklmnopqrsuvwxt1234567890!@#$%^&*()/\~`[]"
+    choices= "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()/\~`[]"
     rand_password = [random.choice(choices) for i in range(25)] 
     rand_password = "".join(rand_password)
     return rand_password.encode()
@@ -85,7 +85,7 @@ def main():
 
     if (a==1):
         global master_key
-        master_key = input("Enter your master-key: ")
+        master_key = getpass.getpass("Enter your master-key: ")
         conn = sql_connection()
         cur= conn.cursor()
         cur.execute("SELECT PASSWORD FROM PERSONAL WHERE ID=1")
@@ -106,7 +106,7 @@ def main():
             print("Enter Valid Password!")
         
     elif (a==2):
-        master_key = input("Enter your master-key: ")
+        master_key = getpass.getpass("Enter your master-key: ")
         conn =sql_connection()
         cur= conn.cursor()
         cur.execute("SELECT PASSWORD FROM PERSONAL WHERE ID=1")
@@ -118,6 +118,10 @@ def main():
 
     else:
         print("Enter valid choice")
+
+    exit = input('Want to stay on the application?(y/n) ')
+    if exit == 'y':
+        main()
 
 if __name__ == '__main__':
     main()
