@@ -1,4 +1,4 @@
-import random,bcrypt,sqlite3,os,base64
+import random,bcrypt,sqlite3,os,base64,getpass
 from sqlite3 import Error
 from cryptography.fernet import Fernet
 from cryptography.hazmat.backends import default_backend
@@ -85,7 +85,7 @@ def main():
 
     if (a==1):
         global master_key
-        master_key = input("Enter your master-key: ")
+        master_key = getpass.getpass("Enter your master-key: ")
         conn = sql_connection()
         cur= conn.cursor()
         cur.execute("SELECT PASSWORD FROM PERSONAL WHERE ID=1")
@@ -106,7 +106,7 @@ def main():
             print("Enter Valid Password!")
         
     elif (a==2):
-        master_key = input("Enter your master-key: ")
+        master_key = getpass.getpass("Enter your master-key: ")
         conn =sql_connection()
         cur= conn.cursor()
         cur.execute("SELECT PASSWORD FROM PERSONAL WHERE ID=1")
