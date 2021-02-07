@@ -3,11 +3,8 @@ from sqlite3 import Error
 
 def createDB():
     try:
-
         conn = sqlite3.connect('main.db')
-
         return conn
-
     except sqlite3.Error as e:
         print(type(e).__name__)
 
@@ -18,9 +15,6 @@ def createTB(conn):
         conn.commit()
     except sqlite3.Error as e:
         print(type(e).__name__)
-    # finally:
-    #     conn.close()
-
 
 def addMasterKey(conn,main_password):
     hashed = bcrypt.hashpw(main_password.encode('utf-8'),bcrypt.gensalt())
