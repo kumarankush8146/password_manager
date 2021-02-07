@@ -1,3 +1,11 @@
-prettytable==0.7.2
-cryptography==3.2
 bcrypt==3.1.7
+cffi==1.14.4
+colorama==0.4.4
+commonmark==0.9.1
+cryptography==3.2
+prettytable==0.7.2
+pycparser==2.20
+Pygments==2.7.4
+rich==9.10.0
+six==1.15.0
+typing-extensions==3.7.4.3
